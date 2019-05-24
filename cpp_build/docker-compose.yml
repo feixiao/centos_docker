@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  cppBuild:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    image: feixiao/cpp_build_centos:1.4
+    container_name: cpp_build_centos
+    ports:
+      - "2224:22"
+    volumes:
+      - .:/home/frank/code
+    working_dir: /home/frank/code

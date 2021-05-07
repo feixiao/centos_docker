@@ -1,10 +1,10 @@
 ## 构建基于CentOS的Docker镜像
 
 ### cpp_build
-+ 基于CentOS 7.2.1511的编译容器平台
++ 基于CentOS 7.6.1810的编译容器平台
     ```
     # build
-    docker build ./ -t feixiao/cpp_build_centos
+    make
 
     # Launch
     docker-compose up -d

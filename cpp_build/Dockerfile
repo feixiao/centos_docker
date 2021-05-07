@@ -1,40 +1,36 @@
-FROM centos:7.2.1511
+FROM centos:7.6.1810
 
-
-MAINTAINER "frank" feixiao2020@sina.com
-
-
-
+LABEL  "frank" feixiao2020@sina.com
     
 RUN rpm --rebuilddb && yum install -y sudo lrzsz 
 
 # Cpp build 
 RUN rpm --rebuilddb && yum install -y centos-release-scl \
     cmake make git subversion automake \
-    libtool autoconf pkgconfig gengetopt passwd wget curl  
+    libtool autoconf pkgconfig gengetopt passwd wget curl gdb
 
-RUN rpm --rebuilddb && yum install -y  devtoolset-7 devtoolset-6 \
-    devtoolset-6-libasan-devel devtoolset-6-libubsan-devel && \
-    echo "source /opt/rh/devtoolset-6/enable" >> /etc/bashrc 
+RUN rpm --rebuilddb && yum install -y  devtoolset-7  \
+    devtoolset-7-libasan-devel devtoolset-7-libubsan-devel && \
+    echo "source /opt/rh/devtoolset-7/enable" >> /etc/bashrc 
 
 
 # GDB 7.9.1
-RUN wget https://ftp.gnu.org/gnu/termcap/termcap-1.3.1.tar.gz  && \
-    tar -xvf termcap-1.3.1.tar.gz && \
-    cd termcap-1.3.1 && \
-    ./configure && \
-    make && make install && \
-    cd ../ && rm -rf termcap-1.3.1 && rm -f termcap-1.3.1.tar.gz
+# RUN wget https://ftp.gnu.org/gnu/termcap/termcap-1.3.1.tar.gz  && \
+#     tar -xvf termcap-1.3.1.tar.gz && \
+#     cd termcap-1.3.1 && \
+#     ./configure && \
+#     make && make install && \
+#     cd ../ && rm -rf termcap-1.3.1 && rm -f termcap-1.3.1.tar.gz
 
 
 
-RUN wget http://mirrors.ustc.edu.cn/gnu/gdb/gdb-7.9.1.tar.xz  && \
-    tar -xf gdb-7.9.1.tar.xz && \
-    cd gdb-7.9.1 && \
-    rpm --rebuilddb && yum install  -y texinfo && \
-    ./configure && \
-    make && make install && \
-    cd ../ && rm -rf gdb-7.9.1 &&  rm -f gdb-7.9.1.tar.xz
+# RUN wget http://mirrors.ustc.edu.cn/gnu/gdb/gdb-7.9.1.tar.xz  && \
+#     tar -xf gdb-7.9.1.tar.xz && \
+#     cd gdb-7.9.1 && \
+#     rpm --rebuilddb && yum install  -y texinfo && \
+#     ./configure && \
+#     make && make install && \
+#     cd ../ && rm -rf gdb-7.9.1 &&  rm -f gdb-7.9.1.tar.xz
 
 
 # Install ssh

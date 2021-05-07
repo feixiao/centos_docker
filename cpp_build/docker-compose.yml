@@ -5,7 +5,7 @@ services:
     build:
       context: ./
       dockerfile: ./Dockerfile
-    image: feixiao/cpp_build_centos:1.4
+    image: registry.cn-hangzhou.aliyuncs.com/frank_dev/cpp_build:1.0
     container_name: cpp_build_centos
     ports:
       - "2224:22"
